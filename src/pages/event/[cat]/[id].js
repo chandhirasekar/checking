@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps(context) {
-  console.log(context);
+  
   const id = context.params.id;
   const { allEvents } = await import("/data/data.json");
   const eventPage = allEvents.find((e) => id === e.id);
