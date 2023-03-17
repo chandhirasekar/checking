@@ -1,10 +1,17 @@
 import Image from "next/image";
 const page = ({ data }) => {
-  console.log(data);
+ 
   return (
     <div>
-      <Image width={1000} height={500} alt={data.title} src={data.image} />
       <h1>{data.title}</h1>
+      <Image
+        key={data.id}
+        width={1000}
+        height={500}
+        alt={data.title}
+        src={data.image}
+      />
+
       <p>{data.description}</p>
     </div>
   );
@@ -28,7 +35,6 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps(context) {
-  
   const id = context.params.id;
   const { allEvents } = await import("/data/data.json");
   const eventPage = allEvents.find((e) => id === e.id);
